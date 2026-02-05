@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: assignment
+server:
+  port: 8016
