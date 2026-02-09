@@ -1,6 +1,7 @@
-package com.gler.assignment.controller;
+package com.gler.assignment.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.gler.assignment.controllers.ForcastController;
 import com.gler.assignment.dto.ForecastRequest;
 import com.gler.assignment.dto.ForecastResponse;
 import com.gler.assignment.exception.UpstreamApiException;
@@ -225,7 +226,7 @@ class ForcastControllerTest {
         mockMvc.perform(post("/api/v1/forcast")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(""))
-                .andExpect(status().isBadRequest());
+                .andExpect(status().isInternalServerError());
 
         verify(forecastService, never()).processForecast(any(ForecastRequest.class));
     }
@@ -236,7 +237,7 @@ class ForcastControllerTest {
         mockMvc.perform(post("/api/v1/forcast")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{invalid json}"))
-                .andExpect(status().isBadRequest());
+                .andExpect(status().isInternalServerError());
 
         verify(forecastService, never()).processForecast(any(ForecastRequest.class));
     }

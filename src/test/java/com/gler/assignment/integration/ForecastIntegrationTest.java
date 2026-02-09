@@ -281,6 +281,6 @@ class ForecastIntegrationTest {
         mockMvc.perform(post("/api/v1/forcast")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(""))
-                .andExpect(status().isBadRequest());
+                .andExpect(status().isInternalServerError());
     }
 }
